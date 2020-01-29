@@ -1,12 +1,18 @@
 import React from 'react';
+import axios from 'axios';
 
 const Login = (props) => {
     return (
         <div>
-            <form>
+            <form onSubmit={(event)=>{
+                event.preventDefault();
+                console.log(event)
+                axios.get("http://localhost/test?user="+event.user+"&pass="+event.pass)
+                    .then((response)=>{console.log(response)})
+            }}>
             <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Email address</label>
-                <input type="email" className="form-control" id="user" aria-describedby="emailHelp" />
+                <label htmlFor="exampleInputEmail1">Username</label>
+                <input type="text" className="form-control" id="user" aria-describedby="emailHelp" />
                 <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div className="form-group">
